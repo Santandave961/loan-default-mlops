@@ -19,6 +19,14 @@ import streamlit as st
 REGISTERED_MODEL_NAME = "sme-loan-default-classifier"
 ROOT = Path(__file__).resolve().parent.parent
 ARTIFACT_DIR = ROOT / "artifacts"
+MLRUNS_DIR = ROOT / "mlruns"
+
+# Explicitly point MLflow at the committed mlruns folder using an absolute
+# path. Without this, MLflow resolves paths relative to the process's
+# working directory, which isn't guaranteed to be the repo root on
+# Streamlit Cloud.
+mlflow.set_tracking_uri(f"file://{MLRUNS_DIR}")
+mlflow.set_registry_uri(f"file://{MLRUNS_DIR}")
 
 st.set_page_config(page_title="SME Loan Default - MLOps Dashboard", layout="wide")
 st.title("🇳🇬 SME Loan Default — MLOps Dashboard")
