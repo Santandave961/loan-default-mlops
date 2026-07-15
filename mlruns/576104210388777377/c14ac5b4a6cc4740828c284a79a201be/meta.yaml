@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/USER/Desktop/app/mlruns/576104210388777377/c14ac5b4a6cc4740828c284a79a201be/artifacts
+end_time: 1784069443725
+entry_point_name: ''
+experiment_id: '576104210388777377'
+lifecycle_stage: active
+run_id: c14ac5b4a6cc4740828c284a79a201be
+run_name: random_forest
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1784069413798
+status: 3
+tags: []
+user_id: USER

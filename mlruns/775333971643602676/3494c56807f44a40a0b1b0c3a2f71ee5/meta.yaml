@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/USER/Desktop/app/mlruns/775333971643602676/3494c56807f44a40a0b1b0c3a2f71ee5/artifacts
+end_time: 1784071296683
+entry_point_name: ''
+experiment_id: '775333971643602676'
+lifecycle_stage: active
+run_id: 3494c56807f44a40a0b1b0c3a2f71ee5
+run_name: drift_check
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1784071296297
+status: 3
+tags: []
+user_id: USER

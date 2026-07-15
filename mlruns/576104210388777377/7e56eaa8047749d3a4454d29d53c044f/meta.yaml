@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/USER/Desktop/app/mlruns/576104210388777377/7e56eaa8047749d3a4454d29d53c044f/artifacts
+end_time: 1784070227239
+entry_point_name: ''
+experiment_id: '576104210388777377'
+lifecycle_stage: active
+run_id: 7e56eaa8047749d3a4454d29d53c044f
+run_name: lightgbm
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1784070204419
+status: 3
+tags: []
+user_id: USER
