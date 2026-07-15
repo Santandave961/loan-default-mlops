@@ -9,7 +9,10 @@ Usage:
 """
 
 import json
+import os
 from pathlib import Path
+
+os.environ["MLFLOW_ALLOW_FILE_STORE"] = "true"
 
 import matplotlib
 matplotlib.use("Agg")

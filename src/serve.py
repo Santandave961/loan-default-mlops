@@ -10,7 +10,10 @@ Then:
     curl -X POST http://localhost:8000/predict -H "Content-Type: application/json" -d @sample_request.json
 """
 
+import os
 from pathlib import Path
+
+os.environ["MLFLOW_ALLOW_FILE_STORE"] = "true"
 
 import mlflow
 import pandas as pd

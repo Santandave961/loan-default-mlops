@@ -10,11 +10,17 @@ Run:
 """
 
 import json
+import os
 from pathlib import Path
 
 import mlflow
 import pandas as pd
 import streamlit as st
+
+# MLflow 3.x deprecated the local filesystem tracking backend in favor of
+# database backends (e.g. SQLite). This project intentionally uses the
+# filesystem backend (mlruns/) for simplicity, so we explicitly opt back in.
+os.environ["MLFLOW_ALLOW_FILE_STORE"] = "true"
 
 REGISTERED_MODEL_NAME = "sme-loan-default-classifier"
 ROOT = Path(__file__).resolve().parent.parent
