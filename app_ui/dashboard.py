@@ -30,9 +30,11 @@ MLRUNS_DIR = ROOT / "mlruns"
 # Explicitly point MLflow at the committed mlruns folder using an absolute
 # path. Without this, MLflow resolves paths relative to the process's
 # working directory, which isn't guaranteed to be the repo root on
-# Streamlit Cloud.
-mlflow.set_tracking_uri(f"file://{MLRUNS_DIR}")
-mlflow.set_registry_uri(f"file://{MLRUNS_DIR}")
+# Streamlit Cloud. Path.as_uri() is used (not a manual f-string) because it
+# correctly formats file:// URIs on both Windows (file:///C:/...) and
+# Linux (file:///home/...) -- a manual f"file://{path}" breaks on Windows.
+mlflow.set_tracking_uri(MLRUNS_DIR.as_uri())
+mlflow.set_registry_uri(MLRUNS_DIR.as_uri())
 
 st.set_page_config(page_title="SME Loan Default - MLOps Dashboard", layout="wide")
 st.title("🇳🇬 SME Loan Default — MLOps Dashboard")
