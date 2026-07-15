@@ -76,17 +76,36 @@ if not versions:
 else:
     aliases_by_version = get_aliases_by_version()
     reg_data = []
+    skipped_versions = []
     for v in versions:
-        run = client.get_run(v.run_id)
         version_str = str(v.version)
+        try:
+            run = client.get_run(v.run_id)
+            run_name = run.data.tags.get("mlflow.runName", "-")
+            roc_auc = round(run.data.metrics.get("roc_auc", 0), 4)
+            f1 = round(run.data.metrics.get("f1", 0), 4)
+        except Exception:
+            # This version's run data is missing or incomplete (e.g. not
+            # fully committed to the repo). Show it with placeholders
+            # rather than crashing the whole dashboard.
+            skipped_versions.append(version_str)
+            run_name, roc_auc, f1 = "(run data unavailable)", None, None
+
         aliases = aliases_by_version.get(version_str, [])
         reg_data.append({
             "version": version_str,
             "aliases": ", ".join(aliases) if aliases else "-",
-            "run_name": run.data.tags.get("mlflow.runName", "-"),
-            "roc_auc": round(run.data.metrics.get("roc_auc", 0), 4),
-            "f1": round(run.data.metrics.get("f1", 0), 4),
+            "run_name": run_name,
+            "roc_auc": roc_auc,
+            "f1": f1,
         })
+
+    if skipped_versions:
+        st.info(
+            f"Run data unavailable for version(s): {', '.join(skipped_versions)}. "
+            "This usually means the run wasn't fully committed to the repo."
+        )
+
     reg_df = pd.DataFrame(reg_data).sort_values("version", ascending=False)
     st.dataframe(reg_df, use_container_width=True)
 
